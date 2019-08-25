@@ -76,7 +76,7 @@
 </section>
 
 <!-- jsp动作标签引入子页面 -->
-	<jsp:include page="common/footer.jsp"></jsp:include>
+<jsp:include page="common/footer.jsp"></jsp:include>
 	
 <!-- <script src="js/jquery.qqFace.js"></script> 
 <script type="text/javascript">	
@@ -84,9 +84,9 @@ $(function(){
 	$('.emotion').qqFace({
 		id : 'facebox', 
 		assign:'comment-textarea', 
-		path:'/Home/images/arclist/'	//表情存放的路径
+		path:'/images/arclist/'	//表情存放的路径
 	});
- });   --> 
-</script>
+ });   
+</script>--> 
 </body>
 </html>

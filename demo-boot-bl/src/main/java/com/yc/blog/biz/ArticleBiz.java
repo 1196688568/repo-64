@@ -54,9 +54,24 @@ public class ArticleBiz {
 		example.createCriteria().andIdEqualTo(id);
 		Article a = am.selectByPrimaryKey(id);
 		//更新阅读次数
-		a.setReadcnt((a.getAgreecnt() == null ? 0 : a.getAgreecnt())+ 1);
+		a.setReadcnt((a.getAgreecnt() == null ? 0 : a.getReadcnt())+ 1);
 		am.updateByPrimaryKey(a);
 		return a;
+	}
+
+	public List<Article> queryRela(Integer categoryid) {
+		ArticleExample example = new ArticleExample();
+		//时间降序
+		example.setOrderByClause("createTime desc");
+		//查相关类别文章
+		example.createCriteria().andCategoryidEqualTo(categoryid);
+		//查10个记录
+		PageHelper.startPage(1,10);
+		return am.selectByExample(example);
+	}
+
+	public void save(Article article) {
+		am.insert(article);
 	}
 	
 }

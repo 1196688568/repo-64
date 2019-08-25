@@ -31,37 +31,41 @@
 
 <body class="user-select single">
 
-	<!-- jsp指令引入页头子页面 -->
-	<%@ include file="common/header.jsp"%>
+<!-- jsp指令引入页头子页面 -->
+<%@ include file="common/header.jsp"%>
 	
 <section class="container">
   <div class="content-wrap">
     <div class="content">
-      <header class="article-header">
+     <header class="article-header">
         <h1 class="article-title"><a href="article.html">${article.title}</a></h1>
-        <div class="article-meta"> <span class="item article-meta-time">
-          <time class="time" data-toggle="tooltip" data-placement="bottom"
-           title="时间：<fmt:formatDate value="${article.createtime}" pattern="yyyy-MM-dd HH:mm:ss"/>">
-          <i class="glyphicon glyphicon-time"></i>
-          <fmt:formatDate value="${article.createtime}"
-          	pattern="yyyy-MM-dd HH:mm:ss"/>
-           
-           </time>
-          </span> 
-          <span class="item article-meta-source" data-toggle="tooltip" data-placement="bottom" title="来源：第一PHP社区">
-          	<i class="glyphicon glyphicon-globe"></i> 第一PHP社区</span>
-          <span class="item article-meta-category" data-toggle="tooltip" data-placement="bottom" title="栏目：${article.category.name}">
-          	<i class="glyphicon glyphicon-list"></i> 
-          	<a href="program" title="">${article.category.name}</a>
-          </span> 
-          <span class="item article-meta-views" data-toggle="tooltip" data-placement="bottom" title="查看：120">
-          <i class="glyphicon glyphicon-eye-open"></i> 共${article.readcnt}人阅读</span>
-           <span class="item article-meta-comment" data-toggle="tooltip" data-placement="bottom" title="评论：0">
-           <i class="glyphicon glyphicon-comment"></i> 0个不明物体</span>
-           </div>
+        <div class="article-meta"> 
+	        <span class="item article-meta-time">
+	        	<time class="time" data-toggle="tooltip" data-placement="bottom" 
+	        			title="时间：<fmt:formatDate value="${article.createtime}" pattern="yyyy-MM-dd HH:mm:ss"/>">
+		        	<i class="glyphicon glyphicon-time"></i> 
+		        	<fmt:formatDate value="${article.createtime}" pattern="yyyy-MM-dd HH:mm:ss"/> 
+		        	
+	        	</time>
+	        </span> 
+	        <span class="item article-meta-source" data-toggle="tooltip" data-placement="bottom" title="来源：第一PHP社区">
+	        	<i class="glyphicon glyphicon-globe"></i> 第一PHP社区
+	        </span> 
+	        <span class="item article-meta-category" data-toggle="tooltip" data-placement="bottom" title="栏目：${article.category.name }">
+	       	 	<i class="glyphicon glyphicon-list"></i> 
+	       	 	<a href="program" title="">${article.category.name }</a>
+	        </span> 
+	        <span class="item article-meta-views" data-toggle="tooltip" data-placement="bottom" title="查看：${article.readcnt}">
+	        	<i class="glyphicon glyphicon-eye-open"></i>  共${article.readcnt}人阅读
+	        </span> 
+	        <span class="item article-meta-comment" data-toggle="tooltip" data-placement="bottom" title="评论：0">
+	        	<i class="glyphicon glyphicon-comment"></i> 0个不明物体
+	        </span> 
+        </div>
       </header>
+            
       <article class="article-content">
-        <p><img src="images/banner/banner_03.jpg" alt="" /></p>
+        <p><img  src="images/banner/banner_03.jpg" alt="" /></p>
         ${article.content}
       </article>
       <div class="article-tags">标签：<a href="" rel="tag">PHP</a></div>
@@ -69,54 +73,60 @@
         <div class="title">
           <h3>相关推荐</h3>
         </div>
-        <ul>
-          <li><a href="article.html">php如何判断一个日期的格式是否正确</a></li>
-          <li><a href="article.html">php如何判断一个日期的格式是否正确</a></li>
-          <li><a href="article.html">php如何判断一个日期的格式是否正确</a></li>
-          <li><a href="article.html">php如何判断一个日期的格式是否正确</a></li>
-          <li><a href="article.html">php如何判断一个日期的格式是否正确</a></li>
-          <li><a href="article.html">php如何判断一个日期的格式是否正确</a></li>
-          <li><a href="article.html">php如何判断一个日期的格式是否正确</a></li>
-          <li><a href="article.html">php如何判断一个日期的格式是否正确</a></li>
+        <ul>        
+	        <c:forEach items="${relaList }" var="a">
+	        	<li><a href="article?id=${a.id }">${a.title }</a></li>
+	        </c:forEach>          
         </ul>
       </div>
       <div class="title" id="comment">
         <h3>评论 <small>抢沙发</small></h3>
       </div>
-      <!--<div id="respond">
-        <div class="comment-signarea">
-          <h3 class="text-muted">评论前必须登录！</h3>
-          <p> <a href="javascript:;" class="btn btn-primary login" rel="nofollow">立即登录</a> &nbsp; <a href="javascript:;" class="btn btn-default register" rel="nofollow">注册</a> </p>
-          <h3 class="text-muted">当前文章禁止评论</h3>
-        </div>
-      </div>-->
       <div id="respond">
         <form action="" method="post" id="comment-form">
           <div class="comment">
             <div class="comment-title"><img class="avatar" src="images/icon/icon.png" alt="" /></div>
             <div class="comment-box">
               <textarea placeholder="您的评论可以一针见血" name="comment" id="comment-textarea" cols="100%" rows="3" tabindex="1" ></textarea>
-              <div class="comment-ctrl"> <span class="emotion"><img src="images/face/5.png" width="20" height="20" alt="" />表情</span>
-                <div class="comment-prompt"> <i class="fa fa-spin fa-circle-o-notch"></i> <span class="comment-prompt-text"></span> </div>
-                <input type="hidden" value="1" class="articleid" />
-                <button type="submit" name="comment-submit" id="comment-submit" tabindex="5" articleid="1">评论</button>
+              <div class="comment-ctrl"> 
+              	<span class="emotion">
+              		<img src="images/face/5.png" width="20" height="20" alt="" />表情
+              	</span>
+                <div class="comment-prompt"> 
+                	<i class="fa fa-spin fa-circle-o-notch"></i> 
+                	<span class="comment-prompt-text"></span> 
+                </div>
+                <!-- 加入文章id -->
+                <input type="hidden" value="${article.id }" class="articleid" />
+                <button type="button" name="comment-submit" id="comment-submit" tabindex="5" articleid="1">评论</button>
               </div>
             </div>
           </div>
         </form>
       </div>
       <div id="postcomments">
-        <ol class="commentlist">
-          <li class="comment-content"><span class="comment-f">#1</span>
-            <div class="comment-avatar"><img class="avatar" src="images/icon/icon.png" alt="" /></div>
-            <div class="comment-main">
-              <p>来自<span class="address">河南郑州</span>的用户<span class="time">(2016-01-06)</span><br />
-                这是匿名评论的内容这是匿名评论的内容，这是匿名评论的内容这是匿名评论的内容这是匿名评论的内容这是匿名评论的内容这是匿名评论的内容这是匿名评论的内容。</p>
-            </div>
-          </li>
-        </ol>
+      	<c:forEach items="${article.comments }" var="c" varStatus="vs">
+	      	<ol class="commentlist">
+	          <li class="comment-content">
+	          <span class="comment-f" data-index="${vs.index +1 }"># ${vs.index +1 }</span>
+	            <div class="comment-avatar"><img class="avatar" src="images/icon/icon.png" alt="" /></div>
+	            <div class="comment-main">
+	              <p>来自<span class="address">河南郑州</span>的用户
+	              	<span class="time">
+	              		(<fmt:formatDate value="${c.createtime }" pattern="yyyy-MM-dd HH:mm:ss"/>)
+	             	</span>
+	             	<br />
+	               ${c.content }
+	             </p>
+	            </div>
+	          </li>
+	        </ol>
+      	</c:forEach>    
+       
         
-        <div class="quotes"><span class="disabled">首页</span><span class="disabled">上一页</span><a class="current">1</a><a href="">2</a><span class="disabled">下一页</span><span class="disabled">尾页</span></div>
+        <div class="quotes" style="display: none">
+        		<a id ="CommPage" href="article">下一页</a>
+        </div>
       </div>
     </div>
   </div>
@@ -184,15 +194,56 @@
 </section>
 
 	<!-- jsp动作标签引入子页面 -->
-	<jsp:include page="common/footer.jsp"></jsp:include>
-	
+<jsp:include page="common/footer.jsp"></jsp:include>
+<script src="js/jquery.ias.js"></script> 
+
+<script type="text/javascript">
+
+//无限滚动反翻页
+var ias = jQuery.ias({
+	history: false,
+	container : '#postcomments',
+	item: '.commentlist',
+	pagination: '.quotes',
+	next: '#CommPage',
+//	trigger: '查看更多',
+//	loader: '<div class="pagination-loading"><img src="/images/loading.gif" /></div>',
+//	triggerPageThreshold: 5
+});
+
+var page = 1;
+ias.on('load', function(event) {
+//	alert(event);
+	event.ajaxOptions.data = { 
+			page: ++page,
+			id: ${article.id }
+			};
+});
+
+
+
+ias.extension(new IASSpinnerExtension({
+    src: '/images/loading.gif', // optionally
+}));
+
+ias.extension(new IASTriggerExtension({
+	trigger: '查看更多', //鼠标点击加载提示的文字
+	offset: 2			//到第几页后，开始鼠标点击加载
+}));
+
+</script>
+
+
+<script src="js/jquery.qqFace.js"></script> 
+<script type="text/javascript">
 $(function(){
 	$('.emotion').qqFace({
 		id : 'facebox', 
 		assign:'comment-textarea', 
-		path:'/Home/images/arclist/'	//表情存放的路径
+		path:'/images/arclist/'	//表情存放的路径
 	});
  });   
-</script>
+</script>	
+
 </body>
 </html>

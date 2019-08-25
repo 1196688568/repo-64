@@ -73,13 +73,29 @@ function login() {
 	//匿名函数
 	var callback = function (result) {
 		if(result.code == 1){
-			$(".login").text("欢迎：" + result.data.cnName);
+			$(".login").text("欢迎：" + result.data.cnName);	
+			//抑制登陆口下次跳出
+			$(".login").attr("data-target","");
+			//隐藏登陆窗口
+			$('#loginModal').modal('hide'); 
 		} else {
 			alert(result.msg);
 		}
 	};
 	$.post(url,param,callback);
 }
+
+<%if(request.getParameter("login")!=null){ %>
+	$(function(){
+		$('#loginModal').modal('show');
+	});
+<%}%>
+
+<%-- <%if(request.getParameter("login") != null){ %>
+	$(function(){
+		$('#loginModel').modal('show');
+	});		
+<% } %> --%>
 
 </script>
 <!--右键菜单列表-->
@@ -93,6 +109,5 @@ function login() {
   </ul>
 </div>
 <script src="js/bootstrap.min.js"></script> 
-<script src="js/jquery.ias.js"></script> 
 <script src="js/scripts.js"></script>
 

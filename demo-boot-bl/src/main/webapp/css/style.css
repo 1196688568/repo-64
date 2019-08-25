@@ -1141,8 +1141,8 @@ color:#FFF;
 	transform: rotate(360deg);
 }
 .comment-f {
-	position: absolute;
-	top: 15px;
+/* 	position: absolute;
+ */	top: 15px;
 	right: 0;
 	font-size: 16px;
 	color: #ccc;

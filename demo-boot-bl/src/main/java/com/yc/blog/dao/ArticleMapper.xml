@@ -23,8 +23,17 @@
     
     <association property="category" column="categoryId" fetchType="lazy" 
     	select="com.yc.blog.dao.CategoryMapper.selectByPrimaryKey"/>
+    	
+   <!-- 一对多关联查询 -->
+    <collection property="comments" column="id" fetchType="lazy" 
+    	select="selectCommentByArticleid"  ></collection>
     
   </resultMap>
+  <select id="selectCommentByArticleid" 
+  	resultMap="com.yc.blog.dao.CommentMapper.BaseResultMap">
+  	select * from comment where articleid = #{aid}
+  </select>
+  
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.yc.blog.bean.Article">
     <!--
       WARNING - @mbg.generated
